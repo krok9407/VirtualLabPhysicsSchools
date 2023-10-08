@@ -15,8 +15,6 @@
 
 ●	Для создания контента мы используем комплексный подход: сочетание текстового, аудио, видео и интерактивного элементов в обучении, а также опираемся на методические материалы, учитываем ограничения и технические требования к реализации;
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/oT6TKlEZNSU?si=e01kK_-neuiAZbFM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
 __________
 ## Мы предлагаем
 ●	Формирование индивидуальной траектории обучения;
