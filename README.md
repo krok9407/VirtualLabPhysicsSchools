@@ -1,8 +1,8 @@
 # Виртуальная лаборатория для подготовки к ОГЭ и ЕГЭ по физике
+
 Мы предлагаем виртуальные лаборатории комбинированного типа, позволяющие в доступной иммерсивной форме погрузить обучающегося в образовательный процесс с комбинацией лекционных и практических заданий.
 
-![ВИРлаб_лого_без_фона](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/2fe46256-b3ed-452c-b6fa-b2a384281d35)
-__________
+
 # Кратко о проекте
 Виртуальные лаборатории - это цифровые аудитории, виртуальные стенды и цифровые тренажёры в области естетсвенных наук.
 
@@ -15,7 +15,7 @@ __________
 
 ●	Для создания контента мы используем комплексный подход: сочетание текстового, аудио, видео и интерактивного элементов в обучении, а также опираемся на методические материалы, учитываем ограничения и технические требования к реализации;
 
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/cc67c70f-2bcb-4dfd-9e09-8d4bba8757a7)
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/oT6TKlEZNSU?si=e01kK_-neuiAZbFM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 __________
 ## Мы предлагаем
@@ -27,33 +27,31 @@ __________
 
 ●	Доступ для целого класса или индивидуальная лицензия;
 
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/80ab1612-94c9-4770-9a03-996141a7275e)
-
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/4a3cbea1-dc87-4d6e-aea8-1a5e9f1e4191)
+![image](https://github.com/krok9407/VirtualLabPhysicsSchools/blob/main/examplesGIF/electricity.gif)
 
 _____
 # Примеры внутренних возможностей тренажера
 ## Форма для авторизации
 Для каждого класса заводятся аккаунты (10 персональных + учительский)
 
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/76895bb3-fc62-4717-bdf8-e44de1aeaf72)
+![image](https://github.com/krok9407/VirtualLabPhysicsSchools/blob/main/examplesGIF/logining.gif)
 
 
 ## Основное меню (*в разработке*)
 Дашборд с прогрессом ученик. Учитель может просмотреть успеваемость студентов. Легенда для понимания работы в приложении
 
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/36d76518-9a67-4f9c-b72c-6606b4d12853)
+![image](https://github.com/krok9407/VirtualLabPhysicsSchools/blob/main/examplesGIF/main%20menu.gif)
 
 ## Перемещение по аудитории
 Для полного погружения мы воссоздаем реальное помещение или создаем в индивидуальной стилистике
 
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/acd6bfd6-89d4-4d3f-904f-99e36fd796b2)
+![image](https://github.com/krok9407/VirtualLabPhysicsSchools/blob/main/examplesGIF/moving.gif)
 
 ## Выбор лабораторной работы
 В лаборатории находится полный учебный курс, обеспечивающий освоение материала в соответствие с требуемой нагрузкой.
 Ученик может выбрать любую лабораторную работу и делать её в своем удобном темпе и последовательности
 
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/428ebad6-19ce-4e61-aeed-ab967887821b)
+![image](https://github.com/krok9407/VirtualLabPhysicsSchools/blob/main/examplesGIF/enter_exit.gif)
 
 ## Освоение материала
 Для максимального погружения созданы интерактивные элементы для взаимодействия:
@@ -61,22 +59,22 @@ _____
 ### Просмотр видеолекций
 Профессиональные методисты записывают курс видеолекций, а ученик может просмотреть их на компьютере внутри аудитории. Параллельно выполнению задания запись транслируется на большом экране
 
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/cfe7a8ee-73a1-4a30-a2e4-fb9efce7cebc)
+![image](https://github.com/krok9407/VirtualLabPhysicsSchools/blob/main/examplesGIF/videoplayer.gif)
 
 ### Запись ответов
 Ученик записывает свои ответы в блокнот. Результаты отправляются на сервер. Учитель может в дашборде посмотреть результаты
 
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/72123b08-71b4-4f90-9551-4e2840aa205d)
+![image](https://github.com/krok9407/VirtualLabPhysicsSchools/blob/main/examplesGIF/notepad.gif)
 
 ## Игровые механики
 В проекте используются элементы геймификации. Все элементы являются интерактивными. 
 Примеры взаимодействия:
 
 ### Взвешивание грузов
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/5fbe248a-a385-4b26-9126-bf85ed0c7464)
+![image](https://github.com/krok9407/VirtualLabPhysicsSchools/blob/main/examplesGIF/scales.gif)
 
 ### Погружение предметов в воду
-![image](https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/626825fb-2082-4e81-92cd-eda0693ee197)
+![image](https://github.com/krok9407/VirtualLabPhysicsSchools/blob/main/examplesGIF/water.gif)
 
 ___
 # Дополнительно
@@ -93,5 +91,10 @@ ___
    
 ## Модель распространения:
 B2G - для учебных заведений
+
 B2B - для частных центров дополнительного образования
+
 B2C - для студентов, школьников
+
+
+<img src="https://github.com/krok9407/VirtualLabPhysicsSchools/assets/54067031/2fe46256-b3ed-452c-b6fa-b2a384281d35" width="15%" height="15%"/>
