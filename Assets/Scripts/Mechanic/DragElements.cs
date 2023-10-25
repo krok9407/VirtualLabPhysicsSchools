@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DragElements : MonoBehaviour

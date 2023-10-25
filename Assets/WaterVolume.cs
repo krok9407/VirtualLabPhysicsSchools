@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
@@ -14,10 +15,11 @@ public class WaterVolume : MonoBehaviour
         _renderer.material.SetFloat("_fullness",_fullness);
     }
     public void Recalculation(float cargoVolume = 0f){
+        var _lastFullness = _fullness;
         _volume = Map(_fullness,0.47f,0.643f, 0f, _maxFullness);
         _volume+=cargoVolume;
         _fullness = Map(_volume, 0f, _maxFullness, 0.47f,0.643f);
-        _renderer.material.SetFloat("_fullness",_fullness);
+        _renderer.material.DOFloat(_fullness, "_fullness", 1f);
     }
     private float Map(float input, float inputMin, float inputMax, float min, float max){
 	    return min + (input - inputMin) * (max - min) / (inputMax - inputMin);

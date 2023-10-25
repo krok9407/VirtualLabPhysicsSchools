@@ -46,6 +46,8 @@ public class EnableDisplay : MonoBehaviour
                 //заменить на инит у инфолаб
                 infoLab.GetComponentInChildren<EnableComputer>().enabled = true;
                 infoLab.GetComponentInChildren<EnableNotepad>().enabled = true;
+                var interactiv = infoLab.GetComponentsInChildren<ChangeMouse>();
+                foreach (var comp in interactiv) { comp.enabled = true; }
                 //
                 enter.SetActive(false);
                 infoLab.StartLab();

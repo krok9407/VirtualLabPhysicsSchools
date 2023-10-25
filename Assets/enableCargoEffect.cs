@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Linq;
-using DG.Tweening;
 
 
 public class enableCargoEffect : MonoBehaviour

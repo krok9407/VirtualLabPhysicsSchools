@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections;
 using UnityEngine;
 using System;
-using UnityStandardAssets.Water;
 
 public class Cargo : MonoBehaviour
 {
@@ -13,27 +11,36 @@ public class Cargo : MonoBehaviour
     [HideInInspector] public Rigidbody _rigidbody;
     public bool contactToGround = false;
     private Vector3 _startPosition;
+    private Quaternion _startRotation;
     private Transform _parent;
+    [SerializeField] private bool checkJoin = false;
 
     private enableCargoEffect _effect;
     private WaterVolume _water;
     private MeshRenderer _mesh;
     private DragElements _drag;
-
+    private Dynamometer dynamometer;
+    private Collider _collider;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         currentMass = mass[0];
         _startPosition = transform.position;
+        _startRotation = transform.rotation;
         _parent = transform.parent;
         _drag = GetComponent<DragElements>();
+        _collider = GetComponent<Collider>();
     }
 
     public void StartPosition()
     {
         transform.position = _startPosition;
+        transform.rotation = _startRotation;
         transform.SetParent(_parent);
+        _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        _rigidbody.useGravity = true;
+        _collider.enabled = true;
     }
 
     public void SetMass(int index)
@@ -42,49 +49,30 @@ public class Cargo : MonoBehaviour
         _rigidbody.mass = currentMass;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider trigger)
     {
-        if (other.TryGetComponent<WaterVolume>(out WaterVolume _waterVolume))
+        if (trigger.TryGetComponent<WaterVolume>(out WaterVolume _waterVolume))
         {
-            StartCoroutine(ChangeVolumeWater(_waterVolume, true));
+            _waterVolume.Recalculation(volume);
             _waterVolume.cargoInside = true;
+        }
+        if (trigger.gameObject.TryGetComponent(out dynamometer))
+        {
+            //перерасчет (анимация пружины)
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider trigger)
     {
-        if (other.TryGetComponent<WaterVolume>(out WaterVolume _waterVolume))
+        if (trigger.TryGetComponent<WaterVolume>(out WaterVolume _waterVolume))
         {
-            StartCoroutine(ChangeVolumeWater(_waterVolume, false));
+            _waterVolume.Recalculation(-volume);
             _waterVolume.cargoInside = true;
         }
-    }
-
-    // private void OnCollisionEnter(Collision col){
-    // if (col.gameObject.TryGetComponent(out Dynamometer dynamometer)){
-    //     Transform attachmentPoint = col.gameObject.GetComponentInChildren<Attachment>().gameObject.transform;
-    //     gameObject.transform.SetParent(col.transform);
-    //     gameObject.transform.position = attachmentPoint.position;
-    //     gameObject.transform.rotation = attachmentPoint.rotation;    
-    // }
-    // }
-    private IEnumerator ChangeVolumeWater(WaterVolume _waterVolume, bool fill)
-    {
-        float goalVolume = 0f;
-        while (goalVolume < volume)
+        if (trigger.gameObject.TryGetComponent(out dynamometer))
         {
-            goalVolume += volume * 0.05f;
-            if (fill)
-            {
-                _waterVolume.Recalculation(volume * 0.05f);
-            }
-            else
-            {
-                _waterVolume.Recalculation(-volume * 0.05f);
-            }
-            yield return new WaitForFixedUpdate();
+            //перерасчет (анимация пружины)
         }
-        yield return null;
     }
 
     void Update()
@@ -97,41 +85,61 @@ public class Cargo : MonoBehaviour
             hits = Physics.RaycastAll(ray, 100.0F);
             foreach (var hit in hits)
             {
-                if (hit.collider.gameObject.TryGetComponent<WaterVolume>(out _water))
+                checkGlass = false;
+                checkJoin = false;
+
+                var hitObj = hit.collider.gameObject;
+
+                if (hitObj.TryGetComponent<WaterVolume>(out _water))
                 {
                     checkGlass = true;
                     _mesh = _water.gameObject.GetComponent<MeshRenderer>();
                     _mesh.enabled = false;
                     _effect = _water.GetComponentInChildren<enableCargoEffect>();
-                    _effect.EnableEffect(Int32.Parse(gameObject.name), true);
+                    _effect.EnableEffect(Int32.Parse(gameObject.name)-1, true);
                     break;
                 }
-                else
+                else if (hitObj.TryGetComponent<Dynamometer>(out dynamometer))
                 {
-                    checkGlass = false;
+                    checkJoin = true;
+                    //запускаем эффект присоединения к динамометру
+                    break;
                 }
+
             }
             if ((!checkGlass || hits.Length < 1) && _effect != null)
             {
-                _effect.EnableEffect(Int32.Parse(gameObject.name), false);
+                _effect.EnableEffect(Int32.Parse(gameObject.name)-1, false);
                 _mesh.enabled = true;
             }
-        }
+        }     
     }
     private void OnMouseUp()
     {
+        
         if (_mesh != null)
         {
             _mesh.enabled = true;
         }
-        if (_effect.gameObject.activeSelf)
+        if (checkJoin)
         {
-            _effect.EnableEffect(Int32.Parse(gameObject.name), false);
+            if (!dynamometer.isBusy)
+            {
+                _rigidbody.useGravity = false;
+                _collider.enabled = false;
+                _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+                dynamometer.ConnectCargo(transform);
+            }
+        }
+        if (_effect.gameObject.activeSelf) //почему-то тут ругается, разобраться и стопориться
+        {
+            _effect.EnableEffect(Int32.Parse(gameObject.name) - 1, false);
             _rigidbody.constraints = RigidbodyConstraints.None;
             Transform attachmentPoint = _water.gameObject.GetComponentInChildren<Attachment>().gameObject.transform;
             gameObject.transform.SetParent(attachmentPoint.transform);
             gameObject.transform.position = attachmentPoint.position;
             gameObject.transform.rotation = attachmentPoint.rotation;
         }
+        
     }
 }

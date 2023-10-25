@@ -13,7 +13,7 @@ public class ChangeMouse : MonoBehaviour
     void OnMouseEnter()
     {
         if(this.enabled){
-            Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto); //проверить почему тут ошибка
         }
     }
     void OnMouseExit()
