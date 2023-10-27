@@ -25,6 +25,7 @@ public class RaycastController : MonoBehaviour
                     {
                         dynamometer.JoiningCargo.StartPosition();
                         dynamometer.isBusy = false;
+                        dynamometer.ChangePosition(-dynamometer.JoiningCargo.force[dynamometer.IndexForce]);
                     }
                 }
             }

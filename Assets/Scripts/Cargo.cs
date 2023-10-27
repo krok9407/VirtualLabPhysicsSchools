@@ -7,6 +7,7 @@ public class Cargo : MonoBehaviour
 {
     [SerializeField] private float volume;
     public List<float> mass = new List<float>();
+    public List<float> force = new List<float>();
     [HideInInspector] public float currentMass;
     [HideInInspector] public Rigidbody _rigidbody;
     public bool contactToGround = false;
