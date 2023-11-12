@@ -14,7 +14,7 @@ public class Cargo : MonoBehaviour
     private Vector3 _startPosition;
     private Quaternion _startRotation;
     private Transform _parent;
-    [SerializeField] private bool checkJoin = false;
+    private bool checkJoin = false;
 
     private enableCargoEffect _effect;
     private WaterVolume _water;
@@ -55,7 +55,7 @@ public class Cargo : MonoBehaviour
         if (trigger.TryGetComponent<WaterVolume>(out WaterVolume _waterVolume))
         {
             _waterVolume.Recalculation(volume);
-            _waterVolume.cargoInside = true;
+            _water.cargos.Add(this);
         }
         if (trigger.gameObject.TryGetComponent(out dynamometer))
         {
@@ -68,7 +68,7 @@ public class Cargo : MonoBehaviour
         if (trigger.TryGetComponent<WaterVolume>(out WaterVolume _waterVolume))
         {
             _waterVolume.Recalculation(-volume);
-            _waterVolume.cargoInside = true;
+            _water.cargos.Remove(this);
         }
         if (trigger.gameObject.TryGetComponent(out dynamometer))
         {

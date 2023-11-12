@@ -36,6 +36,7 @@ public class EnableNotepad : ChangeMouse
         {
             _collider.enabled = true;
             animationNotepad.PlayBackwards();
+            FindObjectOfType<InteractiveElements>().EnableAllMouse(true);
         }
     }
 

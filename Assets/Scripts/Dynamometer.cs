@@ -26,9 +26,8 @@ public class Dynamometer : MonoBehaviour
     public void ConnectCargo(Transform cargo)
     {
         joiningCargo = cargo.GetComponent<Cargo>();
-        cargo.position = pointJoinng.position;
-        cargo.rotation = pointJoinng.rotation;
-        cargo.transform.SetParent(pointJoinng.transform.parent);
+        cargo.SetPositionAndRotation(pointJoinng.position, pointJoinng.rotation);
+        cargo.transform.SetParent(pointJoinng.transform);
         isBusy = true;
         ChangePosition(joiningCargo.force[indexForce]);
     }

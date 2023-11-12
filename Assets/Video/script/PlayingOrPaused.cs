@@ -26,9 +26,9 @@ public class PlayingOrPaused : MonoBehaviour
             monitor.Off(); 
             img.sprite = defaultPic;
         }else{
+            projector.On();
+            monitor.On();
             videoPlayer.Play();
-            projector.On(); 
-            monitor.On(); 
             img.sprite = secondPic;
         }
     }

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterVolume : MonoBehaviour
@@ -7,8 +8,10 @@ public class WaterVolume : MonoBehaviour
     private MeshRenderer _renderer;
     [SerializeField] private float _fullness= 0.47f;
     [SerializeField] private float _maxFullness = 100f;
-    [SerializeField]    private float _volume = 0f;
-    public bool cargoInside = false;    
+    [SerializeField] private float _volume = 0f;
+    private bool cargoInside = false;
+    public bool CargoInside => cargoInside;
+    public List<Cargo> cargos = new List<Cargo>();
     void Awake()
     {
         _renderer = GetComponent<MeshRenderer>();
@@ -24,19 +27,10 @@ public class WaterVolume : MonoBehaviour
     private float Map(float input, float inputMin, float inputMax, float min, float max){
 	    return min + (input - inputMin) * (max - min) / (inputMax - inputMin);
     }
-    void Update()
+    private void Update()
     {
-        if(cargoInside)
-        {
-            if (Input.GetMouseButton(1))
-            {
-                var cargo = GetComponentInChildren<Cargo>();
-                if (cargo != null)
-                {
-                    cargo.StartPosition();
-                }
-            }
-        }
+        if (cargos.Count > 0) cargoInside = true;
+        else cargoInside = false;
     }
     private void OnMouseOver() {
         if(Input.mouseScrollDelta.y>0f){

@@ -43,12 +43,6 @@ public class EnableDisplay : MonoBehaviour
                 sittingCamera.SetActive(true);
                 sittingAnimation.StartSitting(collider.GetComponent<WorkSpace>());
                 firstPersonController.enabled = false;
-                //заменить на инит у инфолаб
-                infoLab.GetComponentInChildren<EnableComputer>().enabled = true;
-                infoLab.GetComponentInChildren<EnableNotepad>().enabled = true;
-                var interactiv = infoLab.GetComponentsInChildren<ChangeMouse>();
-                foreach (var comp in interactiv) { comp.enabled = true; }
-                //
                 enter.SetActive(false);
                 infoLab.StartLab();
                 collider.transform.GetChild(0).gameObject.SetActive(true);

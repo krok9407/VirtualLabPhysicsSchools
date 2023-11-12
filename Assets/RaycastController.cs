@@ -4,7 +4,6 @@ using UnityEngine;
 public class RaycastController : MonoBehaviour
 {
    
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButton(1))
@@ -28,6 +27,15 @@ public class RaycastController : MonoBehaviour
                         dynamometer.ChangePosition(-dynamometer.JoiningCargo.force[dynamometer.IndexForce]);
                     }
                 }
+                else if(obj.TryGetComponent<WaterVolume>(out WaterVolume _water))
+                    {
+                    if (_water.CargoInside)
+                        {
+                            foreach (var cargoInWater in _water.cargos) {
+                                cargoInWater.StartPosition();
+                            }
+                        }
+                    }
             }
 
         }

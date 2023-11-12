@@ -5,10 +5,7 @@ public class ChangeMouse : MonoBehaviour
 {
     [SerializeField] private Texture2D cursorTexture;
 
-    void Start()
-    {
-        this.enabled = false;
-    }
+    void Start(){}
 
     void OnMouseEnter()
     {
@@ -30,6 +27,7 @@ public class ChangeMouse : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                FindObjectOfType<InteractiveElements>().EnableAllMouse(false);
                 Enable(true);
             }
         }

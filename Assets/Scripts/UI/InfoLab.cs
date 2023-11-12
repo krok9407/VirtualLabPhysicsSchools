@@ -8,13 +8,20 @@ public class InfoLab : MonoBehaviour
     private float time = 0f;
     private bool startLab;
     [SerializeField] private Text labelText;
+    private InteractiveElements _elements;
+    private void Awake()
+    {
+        _elements = GetComponent<InteractiveElements>();
+    }
     public void StartLab(){
         startLab = true;
         labelText.gameObject.SetActive(true);
+        _elements.OnAll();
     }
     public void StopLab(){
         startLab = true;
         labelText.gameObject.SetActive(false);
+        _elements.OffAll();
     }
 
     public string GetNumber(){

@@ -13,14 +13,20 @@ public class DragElements : MonoBehaviour
     }
 
     private void OnMouseDown(){
-        isDrag = true;
-        _rigidbody.isKinematic  = true;
-        mouseZCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        mouseOffset = gameObject.transform.position - GetMouseWorldPosition();
+        if (this.enabled)
+        {
+            isDrag = true;
+            _rigidbody.isKinematic = true;
+            mouseZCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+            mouseOffset = gameObject.transform.position - GetMouseWorldPosition();
+        }
     }
     private void OnMouseUp(){
-        _rigidbody.isKinematic  = false;
-        isDrag = false;
+        if (this.enabled)
+        {
+            _rigidbody.isKinematic = false;
+            isDrag = false;
+        }
     }
     private Vector3 GetMouseWorldPosition(){
         Vector3 mousePoint = Input.mousePosition;
@@ -28,6 +34,9 @@ public class DragElements : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
     private void OnMouseDrag(){
-        transform.position = GetMouseWorldPosition() + mouseOffset;
+       if (this.enabled)
+       {
+            transform.position = GetMouseWorldPosition() + mouseOffset;
+       }
     }
 }
