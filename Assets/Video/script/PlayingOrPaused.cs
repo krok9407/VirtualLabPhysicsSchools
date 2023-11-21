@@ -6,9 +6,11 @@ public class PlayingOrPaused : MonoBehaviour
     private Image img;
     private Sprite defaultPic;
     [SerializeField] private Sprite secondPic;
-    [SerializeField] private UnityEngine.Video.VideoPlayer videoPlayer;
+//    [SerializeField] private UnityEngine.Video.VideoPlayer videoPlayer;
+    public UnityEngine.Video.VideoPlayer videoPlayer;
     [SerializeField] private Video.Screen projector;
-    [SerializeField] private Video.Monitor monitor;
+    //[SerializeField] private Video.Monitor monitor;
+     public Video.Monitor monitor;
     void Start()
     {
         img = GetComponent<Image>();

@@ -42,6 +42,7 @@ public class EnableDisplay : MonoBehaviour
             {
                 sittingCamera.SetActive(true);
                 sittingAnimation.StartSitting(collider.GetComponent<WorkSpace>());
+                sittingAnimation.interactiveElements = collider.GetComponent<InteractiveElements>();
                 firstPersonController.enabled = false;
                 enter.SetActive(false);
                 infoLab.StartLab();

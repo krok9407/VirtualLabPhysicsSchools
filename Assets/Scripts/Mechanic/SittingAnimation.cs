@@ -3,7 +3,6 @@ using UnityEngine;
 public class SittingAnimation : MonoBehaviour
 {
     bool isSitting = false;
-    //bool isMoving = false;
     bool isStandUp = false;
     public Transform transformCameraSitting;
     [SerializeField] private Transform transformFirstPersonCharacter;
@@ -14,8 +13,9 @@ public class SittingAnimation : MonoBehaviour
     [SerializeField] float minAngleY;
     [SerializeField] float maxAngleX;
     [SerializeField] float maxAngleY;
-    //float speedRotation = 0.5f;
-    Transform targetDirection; 
+    [SerializeField] PlayingOrPaused videoPlayer;
+    Transform targetDirection;
+    [HideInInspector] public InteractiveElements interactiveElements;
 
     public void StartSitting(WorkSpace workSpace)
     {
@@ -26,6 +26,7 @@ public class SittingAnimation : MonoBehaviour
 
     void Update()
     {
+        //заменить на дотвин
         if (isSitting)
         {
             Vector3 pos = transformCameraSitting.position;
@@ -43,20 +44,14 @@ public class SittingAnimation : MonoBehaviour
                 minAngleY = transform.rotation.eulerAngles.y - 35;
                 maxAngleY = transform.rotation.eulerAngles.y + 35;
                 isSitting = false;
-                //isMoving = true;
             }
         }
-        
-        
-        /* if (isMoving)
-        {
-            RotateView();
-        }
-        */
         
         if (Input.GetKeyDown(KeyCode.E))
         {
             isStandUp = true;
+            videoPlayer.CloseLessons();
+            interactiveElements.OffAll();
         }
         
         if (isStandUp)
@@ -73,48 +68,4 @@ public class SittingAnimation : MonoBehaviour
         }
     }
 
-    /*private void RotateView()
-    {
-        Vector3 rotation = transform.rotation.eulerAngles;
-        
-        if (Input.GetKey(KeyCode.W)){            
-            rotation.x -= speedRotation;
-            if (rotation.x < minAngleX && rotation.x > minAngleX-10f)
-                rotation.x = minAngleX;
-        }
-        else if (Input.GetKey(KeyCode.S)){            
-            rotation.x += speedRotation;
-            if (rotation.x > maxAngleX && rotation.x < maxAngleX+10f)
-                rotation.x = maxAngleX;
-        }
-        else if (Input.GetKey(KeyCode.A)){
-            rotation.y -= speedRotation;
-            if (rotation.y < minAngleY){
-                rotation.y = minAngleY;
-            }       
-        }
-        else if (Input.GetKey(KeyCode.D)){            
-            rotation.y += speedRotation;
-            if (rotation.y > maxAngleY){
-                rotation.y = maxAngleY;
-            }
-        }
-        transform.rotation = Quaternion.Euler(rotation);
-    }
-    */
-    /*private bool Approximately(Vector3 self, Vector3 other, float allowedDifference)
-    {
-        var dx = self.x - other.x;
-        if (Mathf.Abs(dx) > allowedDifference)
-            return false;
- 
-        var dy = self.y - other.y;
-        if (Mathf.Abs(dy) > allowedDifference)
-            return false;
- 
-        var dz = self.z - other.z;
- 
-        return Mathf.Abs(dz) >= allowedDifference;
-    }
-    */
 }

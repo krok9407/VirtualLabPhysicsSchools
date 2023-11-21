@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZoomScales : ChangeMouse
@@ -26,7 +24,7 @@ public class ZoomScales : ChangeMouse
             mainCamera.SetActive(true);
             ButtonExit.SetActive(false);
             _collider.enabled = true;
-            FindObjectOfType<InteractiveElements>().EnableAllMouse(true);
+            FindObjectOfType<InteractiveElements>().EnableAllMouse(false);
         }
     }
 }

@@ -27,8 +27,8 @@ public class ChangeMouse : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-                FindObjectOfType<InteractiveElements>().EnableAllMouse(false);
                 Enable(true);
+                FindObjectOfType<InteractiveElements>().EnableAllMouse(false);
             }
         }
     }

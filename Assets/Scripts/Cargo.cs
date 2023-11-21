@@ -57,10 +57,6 @@ public class Cargo : MonoBehaviour
             _waterVolume.Recalculation(volume);
             _water.cargos.Add(this);
         }
-        if (trigger.gameObject.TryGetComponent(out dynamometer))
-        {
-            //перерасчет (анимация пружины)
-        }
     }
 
     void OnTriggerExit(Collider trigger)
@@ -69,10 +65,6 @@ public class Cargo : MonoBehaviour
         {
             _waterVolume.Recalculation(-volume);
             _water.cargos.Remove(this);
-        }
-        if (trigger.gameObject.TryGetComponent(out dynamometer))
-        {
-            //перерасчет (анимация пружины)
         }
     }
 

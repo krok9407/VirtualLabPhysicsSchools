@@ -11,7 +11,6 @@ namespace Video{
         {
             _renderer = GetComponent<MeshRenderer>();
             _renderer.material = materials[0];
-            gameObject.SetActive(false);
             videoPlayer = GetComponent<UnityEngine.Video.VideoPlayer>();
         }
         public new void On(){

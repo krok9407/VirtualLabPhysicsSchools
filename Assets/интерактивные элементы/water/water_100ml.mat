@@ -133,7 +133,7 @@ Material:
     - _emission: 0.5
     - _emissonTOp: 1
     - _fresnelPower: 0
-    - _fullness: 0.5
+    - _fullness: 0.5293
     - _speedTop: 0
     - _speedWave: 1.5
     m_Colors:
