@@ -7,7 +7,11 @@ public class DragElements : MonoBehaviour
     private float mouseZCoordinate;
     private Rigidbody _rigidbody;
     [HideInInspector] public bool isDrag = false;
-
+    [SerializeField] Camera cam;
+    private void Start()
+    {
+        
+    }
     private void Awake(){
         _rigidbody = GetComponent<Rigidbody>();
     }
@@ -17,7 +21,7 @@ public class DragElements : MonoBehaviour
         {
             isDrag = true;
             _rigidbody.isKinematic = true;
-            mouseZCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+            mouseZCoordinate = cam.WorldToScreenPoint(gameObject.transform.position).z;
             mouseOffset = gameObject.transform.position - GetMouseWorldPosition();
         }
     }
@@ -31,7 +35,7 @@ public class DragElements : MonoBehaviour
     private Vector3 GetMouseWorldPosition(){
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = mouseZCoordinate;
-        return Camera.main.ScreenToWorldPoint(mousePoint);
+        return cam.ScreenToWorldPoint(mousePoint);
     }
     private void OnMouseDrag(){
        if (this.enabled)

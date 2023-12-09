@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ZoomScales : ChangeMouse
+public class ZoomScales : ClickOnObject
 {
     [SerializeField] private GameObject CameraTop;
     [SerializeField] private GameObject mainCamera;
@@ -10,6 +10,7 @@ public class ZoomScales : ChangeMouse
     {
         _collider = GetComponent<BoxCollider>();
     }
+    //использовать обычный без перегрузки, настроить эвенет в инспекторе
     override public void Enable(bool enable) {
         if (enable)
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnableComputer : ChangeMouse
+public class EnableComputer : ClickOnObject
 {
     [SerializeField] GameObject videoPlayer;
     [SerializeField] PlayingOrPaused videoPlayerCanvas;
