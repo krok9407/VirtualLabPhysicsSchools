@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad400953b60bd4f46ad225a4161e2df2, type: 3}
+  m_Name: FigmaImporterSettings
+  m_EditorClassIdentifier: 
+  clientCode: KLfAGQIzqsFZaVDD4CEvr7ajp
+  state: 258258587
+  token: figu_1bvq9oWgaVhbYbtoyzcWYBztdZpQimUuGTCr4DNy
+  url: https://www.figma.com/file/4fJ8Fwv4dfEhce7fbbqUIN/VirLab?type=design&node-id=1-2&mode=design&t=3gKTDDS6EDeW2i0X-4
+  rendersPath: UX UI\GameWindow

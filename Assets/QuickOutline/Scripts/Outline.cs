@@ -101,8 +101,8 @@ public class Outline : MonoBehaviour {
 
     // Apply material properties immediately
     needsUpdate = true;
-    enabled = false;
     }
+
     Sequence mySequence;
     void OnEnable() {
         mySequence = DOTween.Sequence();

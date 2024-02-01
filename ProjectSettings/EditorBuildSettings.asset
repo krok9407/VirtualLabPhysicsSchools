@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EngineeringRoom.unity
     guid: fc3fc3847e8244441bc0df7580262d8b
   - enabled: 0
     path: Assets/Scenes/EngineeringRoom 1.unity
     guid: e3ba5e468f386a848a09fe58b8204bcf
+  - enabled: 1
+    path: Assets/PhysicCabinet.unity
+    guid: a5346c58d935a324e9e5720b4a9bc9ee
   m_configObjects: {}

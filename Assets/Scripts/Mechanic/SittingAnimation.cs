@@ -15,7 +15,7 @@ public class SittingAnimation : MonoBehaviour
     [SerializeField] float maxAngleY;
     [SerializeField] PlayingOrPaused videoPlayer;
     Transform targetDirection;
-    [HideInInspector] public InteractiveElements interactiveElements;
+    public InteractiveElements interactiveElements;
 
     public void StartSitting(WorkSpace workSpace)
     {

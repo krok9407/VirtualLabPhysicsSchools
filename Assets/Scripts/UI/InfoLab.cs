@@ -1,5 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class Answer
+{
+    public string title; 
+    public string answerFirst;
+    public string answerSecond;
+}
+
 
 public class InfoLab : MonoBehaviour
 {
@@ -9,6 +19,8 @@ public class InfoLab : MonoBehaviour
     private bool startLab;
     [SerializeField] private Text labelText;
     private InteractiveElements _elements;
+    public Answer[] answers;
+    public Answer[] Answers => answers;
     private void Awake()
     {
         _elements = GetComponent<InteractiveElements>();

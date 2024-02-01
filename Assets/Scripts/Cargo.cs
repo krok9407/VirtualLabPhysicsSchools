@@ -108,8 +108,7 @@ public class Cargo : MonoBehaviour
         }     
     }
     private void OnMouseUp()
-    {
-        
+    { 
         if (_mesh != null)
         {
             _mesh.enabled = true;
@@ -124,15 +123,17 @@ public class Cargo : MonoBehaviour
                 dynamometer.ConnectCargo(transform);
             }
         }
-        if (_effect.gameObject.activeSelf) //почему-то тут ругается, разобраться и стопориться
+        if (_effect != null)
         {
-            _effect.EnableEffect(Int32.Parse(gameObject.name) - 1, false);
-            _rigidbody.constraints = RigidbodyConstraints.None;
-            Transform attachmentPoint = _water.gameObject.GetComponentInChildren<Attachment>().gameObject.transform;
-            gameObject.transform.SetParent(attachmentPoint.transform);
-            gameObject.transform.position = attachmentPoint.position;
-            gameObject.transform.rotation = attachmentPoint.rotation;
+            if (_effect.gameObject.activeSelf) //почему-то тут ругается, разобраться и стопориться
+            {
+                _effect.EnableEffect(Int32.Parse(gameObject.name) - 1, false);
+                _rigidbody.constraints = RigidbodyConstraints.None;
+                Transform attachmentPoint = _water.gameObject.GetComponentInChildren<Attachment>().gameObject.transform;
+                gameObject.transform.SetParent(attachmentPoint.transform);
+                gameObject.transform.position = attachmentPoint.position;
+                gameObject.transform.rotation = attachmentPoint.rotation;
+            }
         }
-        
     }
 }

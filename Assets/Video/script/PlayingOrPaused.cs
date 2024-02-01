@@ -10,7 +10,8 @@ public class PlayingOrPaused : MonoBehaviour
     public UnityEngine.Video.VideoPlayer videoPlayer;
     [SerializeField] private Video.Screen projector;
     //[SerializeField] private Video.Monitor monitor;
-     public Video.Monitor monitor;
+    public Video.Monitor monitor;
+    public EnableComputer enableComputer;
     void Start()
     {
         img = GetComponent<Image>();
@@ -21,6 +22,10 @@ public class PlayingOrPaused : MonoBehaviour
         img.sprite = defaultPic;
         projector.Off();  
         monitor.Off();
+    }
+    public void CloseCanvas()
+    {
+        enableComputer.Enable(false);
     }
     public void PlayOrPause(){
         if(videoPlayer.isPlaying){  

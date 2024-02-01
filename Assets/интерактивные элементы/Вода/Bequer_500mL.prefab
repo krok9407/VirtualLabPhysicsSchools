@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7850153385987158739}
   - component: {fileID: 7850153385987158736}
   - component: {fileID: 7850153385987158738}
+  - component: {fileID: 7234175463054396308}
   m_Layer: 0
   m_Name: water
   m_TagString: Untagged
@@ -132,6 +133,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: 1e98a0e592850864dacbfc22a17b84a5, type: 3}
+  outline: {fileID: 0}
+--- !u!114 &7234175463054396308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359646888239115149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.9843137, b: 0, a: 0.23529412}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  timeAnimation: 0
 --- !u!1 &3484583971758820760
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,28 +2,25 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Outline))]
 public class SelectInteractiveElement : MonoBehaviour
 {
     [SerializeField] private Texture2D cursorTexture;
-    private Outline outline;
-    void Start()
-    {
-        outline = GetComponent<Outline>();
-    }
-
+    [SerializeField] private Outline outline;
+    private void Start() { }
     void OnMouseEnter()
     {
-        if(this.enabled)
+        if (this.enabled)
         {
             Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto); //проверить почему тут ошибка
-        }
-        outline.enabled = true;
+            outline.enabled = true;
+        } 
     }
     void OnMouseExit()
-    {
-        if(this.enabled){
+    {   
+        if (this.enabled){
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        }
-        outline.enabled = false;
+            outline.enabled = false;
+        }  
     }
 }
