@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -8,7 +7,7 @@ public class ChangingSound : MonoBehaviour, IPointerDownHandler
     private Scrollbar scrollbar;
     private Image fillProgressBar;
     private float propScrollToSound;
-    [SerializeField] private UnityEngine.Video.VideoPlayer videoPlayer;
+    public UnityEngine.Video.VideoPlayer videoPlayer;
     void Start()
     {
         fillProgressBar = GetComponent<Image>();

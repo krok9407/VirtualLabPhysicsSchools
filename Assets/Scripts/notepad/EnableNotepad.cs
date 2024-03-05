@@ -13,13 +13,15 @@ public class EnableNotepad : ClickOnObject
     private InfoLab infoLab;
 
     [SerializeField] private Canvas NotepadCanvas;
-    AnswerFields answerField;
+    private AnswerFields answerField;
+    private NotePad notePad;
     private void Awake()
     {
         TopSide = transform.GetChild(0);
         _collider = GetComponent<BoxCollider>();
         infoLab = GetComponentInParent<InfoLab>();
         answerField = NotepadCanvas.GetComponentInChildren<AnswerFields>();
+        notePad = NotepadCanvas.GetComponentInChildren<NotePad>();
     }
     override public void Enable(bool enable)
     {
@@ -31,7 +33,6 @@ public class EnableNotepad : ClickOnObject
             {
                 eulerAngles = new Vector3(90 - camRotation.eulerAngles.x, camRotation.eulerAngles.y - 180, camRotation.eulerAngles.z)
             };
-
             answerField.DrawTable(infoLab.Answers);
             animationNotepad = DOTween.Sequence();
             animationNotepad.Join(TopSide.DOLocalRotate(new Vector3(0, 0, -180), durationAnimation))

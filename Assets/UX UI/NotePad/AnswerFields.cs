@@ -18,7 +18,7 @@ public class AnswerFields : MonoBehaviour
     {
         for (int i = 0; i < answers.Length; i++)
         {
-            GameObject answer = new GameObject();
+            GameObject answer;
             if (i % 2 == 0)
             {
                 answer = Instantiate(answerPrefab, leftCol);
@@ -27,6 +27,7 @@ public class AnswerFields : MonoBehaviour
             {
                 answer = Instantiate(answerPrefab, rightCol);
             }
+            answer.name = $"вопрос {i}";
             var labels = answer.GetComponent<AnswerField>();
             labels.SetAnswer(answers[i].title, answers[i].answerFirst, answers[i].answerSecond);
             this.answers.Add(answer);

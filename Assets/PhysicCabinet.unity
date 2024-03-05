@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534532e0fba2edc4daba2af3bed01989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 0}
+  videoPlayer: {fileID: 1991169565}
 --- !u!114 &961158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2122,12 +2122,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79975855}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960, y: -540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 531504709}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &79975857
 MonoBehaviour:
@@ -3135,6 +3135,7 @@ MonoBehaviour:
   - title: "\u0422\u0435\u043B\u043E \u21162"
     answerFirst: "\u0421\u0442\u0430\u0440\u0442 (\u0441\u0435\u043A)"
     answerSecond: "\u041A\u043E\u043D\u0435\u0446 (\u0441\u0435\u043A)"
+  changingSound: {fileID: 961157}
 --- !u!65 &153523793
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4147,6 +4148,10 @@ PrefabInstance:
     - target: {fileID: 1371665669839551803, guid: e62fcdb875a043647a51287d114884f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1371665670151555435, guid: e62fcdb875a043647a51287d114884f0, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1371665670151555439, guid: e62fcdb875a043647a51287d114884f0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7009,6 +7014,9 @@ MonoBehaviour:
   pages:
   - {fileID: 1299190525}
   - {fileID: 931226629}
+  defaultColor: {r: 0.7647059, g: 0.7647059, b: 0.7647059, a: 1}
+  defaultSelected: {r: 0.01960784, g: 0.4862745, b: 0.9607844, a: 1}
+  imagesButton: []
 --- !u!1 &454088458
 GameObject:
   m_ObjectHideFlags: 0
@@ -7735,18 +7743,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &504508190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1030971912, guid: abc00000000003415611248199822724, type: 3}
@@ -8118,11 +8114,10 @@ RectTransform:
   m_Children:
   - {fileID: 1357059323}
   - {fileID: 1219783550}
-  - {fileID: 79975856}
   - {fileID: 2142812708}
   - {fileID: 1931986889}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9398,37 +9393,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030975394, guid: abc00000000006566886902814724423, type: 3}
   m_PrefabInstance: {fileID: 1030975716}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &611007617
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 611007618}
-  m_Layer: 0
-  m_Name: old
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &611007618
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611007617}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15224457, y: 1.8241892, z: 1.4677975}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &611283178
 GameObject:
   m_ObjectHideFlags: 0
@@ -10818,18 +10782,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!4 &739161949 stripped
 Transform:
@@ -13422,7 +13374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &931226630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13615,7 +13567,7 @@ RectTransform:
   - {fileID: 491322862}
   - {fileID: 1341030670}
   m_Father: {fileID: 1453412083}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -31766,6 +31718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GraduatedCylinder_250mL
       objectReference: {fileID: 0}
+    - target: {fileID: 6093092354802906668, guid: 8e9fdf60ffc2128498c7d6c1497d8084, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e9fdf60ffc2128498c7d6c1497d8084, type: 3}
 --- !u!1 &1219783549
@@ -32569,7 +32525,7 @@ RectTransform:
   m_Children:
   - {fileID: 451504721}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -34203,6 +34159,7 @@ GameObject:
   - component: {fileID: 1364942705}
   - component: {fileID: 1364942706}
   - component: {fileID: 1364942707}
+  - component: {fileID: 1364942708}
   m_Layer: 0
   m_Name: HEIGHT
   m_TagString: Untagged
@@ -34275,6 +34232,21 @@ MonoBehaviour:
   bakeKeys: []
   bakeValues: []
   timeAnimation: 1
+--- !u!114 &1364942708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364942703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ffc84fd781251a42a8f026d88be2f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxY: 0.07
+  minY: -0.364
+  step: 0.01
 --- !u!4 &1364970402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1030971959, guid: abc00000000001258724457703736591, type: 3}
@@ -36421,6 +36393,7 @@ MonoBehaviour:
   - title: "\u0413\u0440\u0443\u0437 \u21162"
     answerFirst: "\u0432\u0435\u0441 (\u0433)"
     answerSecond: "\u043F\u043B\u043E\u0442\u043D\u043E\u0441\u0442\u044C (\u043A\u0433/\u043C^3)"
+  changingSound: {fileID: 961157}
 --- !u!114 &1549821755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36937,18 +36910,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 451504725}
-        m_TargetAssemblyTypeName: NotePad, Assembly-CSharp
-        m_MethodName: OpenPage
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 491845223}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1577640832
 GameObject:
   m_ObjectHideFlags: 0
@@ -37093,6 +37054,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 26656088838069165, guid: f07af701c0add3845a162e3499299126, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228705423842896801, guid: f07af701c0add3845a162e3499299126, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5880765067450232157, guid: f07af701c0add3845a162e3499299126, type: 3}
@@ -41418,7 +41383,7 @@ RectTransform:
   - {fileID: 518246568}
   - {fileID: 133464755}
   m_Father: {fileID: 531504709}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -41595,7 +41560,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -41730,7 +41695,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -44969,7 +44934,7 @@ RectTransform:
   - {fileID: 1247546879}
   - {fileID: 1625995114}
   m_Father: {fileID: 531504709}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

@@ -50,8 +50,12 @@ public class SittingAnimation : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             isStandUp = true;
-            videoPlayer.CloseLessons();
             interactiveElements.OffAll();
+            try
+            {
+                videoPlayer.CloseLessons();
+            }
+            catch { }
         }
         
         if (isStandUp)

@@ -1,6 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(Outline))]
 public class SelectInteractiveElement : MonoBehaviour
