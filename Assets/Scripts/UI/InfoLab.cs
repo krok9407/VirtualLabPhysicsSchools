@@ -13,8 +13,9 @@ public class Answer
 
 public class InfoLab : MonoBehaviour
 {
-    private int number = 1;
-    [SerializeField] private string nameLab = "Сила Архимеда";
+    [SerializeField] private int number = 1;
+    [SerializeField] private string[] Lessons;
+
     private float time = 0f;
     private bool startLab;
     [SerializeField] private Text labelText;
@@ -22,28 +23,24 @@ public class InfoLab : MonoBehaviour
     public Answer[] answers;
     public Answer[] Answers => answers;
 
-    private UnityEngine.Video.VideoPlayer videoPlayer;
-    [SerializeField] private ChangingSound changingSound;
+    
     private void Awake()
     {
         _elements = GetComponent<InteractiveElements>();
-        videoPlayer = GetComponentInChildren<UnityEngine.Video.VideoPlayer>();
     }
     public void StartLab(){
         startLab = true;
         labelText.gameObject.SetActive(true);
         _elements.OnAll();
-        changingSound.videoPlayer = videoPlayer;
     }
-    public void StopLab(){
+    public void CloseLab(){
         startLab = true;
         labelText.gameObject.SetActive(false);
         _elements.OffAll();
-        changingSound.videoPlayer = null;
     }
 
     public string GetNumber(){
-        return "Лабораторная работа №"+number+"\n"+nameLab;
+        return $"Лабораторный комплект№ {number}";
     }
 
     private void Update() {

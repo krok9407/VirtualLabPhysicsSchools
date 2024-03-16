@@ -6,16 +6,19 @@ public class PlayingOrPaused : MonoBehaviour
     private Image img;
     private Sprite defaultPic;
     [SerializeField] private Sprite secondPic;
-//    [SerializeField] private UnityEngine.Video.VideoPlayer videoPlayer;
-    public UnityEngine.Video.VideoPlayer videoPlayer;
+    [HideInInspector] public UnityEngine.Video.VideoPlayer videoPlayer;
     [SerializeField] private Video.Screen projector;
-    //[SerializeField] private Video.Monitor monitor;
-    public Video.Monitor monitor;
-    public EnableComputer enableComputer;
+    [HideInInspector] public Video.Monitor monitor;
+    [HideInInspector] public EnableComputer enableComputer;
+    [SerializeField] private ChangingSound changingSound;
     void Start()
     {
         img = GetComponent<Image>();
         defaultPic = img.sprite;
+    }
+    private void OnEnable()
+    {
+        changingSound.videoPlayer = videoPlayer;
     }
     public void CloseLessons(){
         videoPlayer.Stop();            

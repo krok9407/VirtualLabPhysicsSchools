@@ -14,6 +14,11 @@ public class ChangingSound : MonoBehaviour, IPointerDownHandler
         scrollbar = GetComponent<Scrollbar>();
         propScrollToSound = 1f/GetComponent<RectTransform>().sizeDelta.x;
     }
+    private void OnEnable()
+    {
+        fillProgressBar.fillAmount = scrollbar.value;
+        videoPlayer.SetDirectAudioVolume(0, scrollbar.value);
+    }
     public void Mute(){
         if(scrollbar.value==0){
             scrollbar.value=1f;

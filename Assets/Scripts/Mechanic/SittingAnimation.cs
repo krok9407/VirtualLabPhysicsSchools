@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SittingAnimation : MonoBehaviour
 {
+    InfoLab infoLab;
     bool isSitting = false;
     bool isStandUp = false;
     public Transform transformCameraSitting;
@@ -16,9 +17,10 @@ public class SittingAnimation : MonoBehaviour
     [SerializeField] PlayingOrPaused videoPlayer;
     Transform targetDirection;
     public InteractiveElements interactiveElements;
-
-    public void StartSitting(WorkSpace workSpace)
+    
+    public void StartSitting(WorkSpace workSpace, InfoLab infoLab)
     {
+        this.infoLab = infoLab;
         isSitting = true;
         transformCameraSitting = workSpace.chair;
         targetDirection = workSpace.targetVision;
@@ -49,6 +51,7 @@ public class SittingAnimation : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E))
         {
+            infoLab.CloseLab();
             isStandUp = true;
             interactiveElements.OffAll();
             try
