@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 [System.Serializable]
 public class Answer
@@ -14,7 +13,8 @@ public class Answer
 public class InfoLab : MonoBehaviour
 {
     [SerializeField] private int number = 1;
-    [SerializeField] private string[] Lessons;
+    [SerializeField] private string[] lessons;
+    public string[] Lessons => lessons;
 
     private float time = 0f;
     private bool startLab;

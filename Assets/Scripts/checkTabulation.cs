@@ -1,13 +1,13 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 
 public class checkTabulation : MonoBehaviour
 {
-    private InputField _input;
+    private TextMeshProUGUI _input;
     void Start()
     {
-        _input = GetComponent<InputField>();
+        _input = GetComponent<TextMeshProUGUI>();
     }
     public void Check(){
         if(_input.text.EndsWith('\t'))

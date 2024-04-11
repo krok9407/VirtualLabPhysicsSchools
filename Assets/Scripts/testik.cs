@@ -5,7 +5,7 @@ using TMPro;
 public class testik : MonoBehaviour
 {
     [SerializeField] private WebManager webManager;
-    [SerializeField] private InputField login, password;
+    [SerializeField] private TMP_InputField login, password;
     [SerializeField] private TMP_Text error;
     [SerializeField] private GameObject loggingForm, startButton;
     int onceLoggining = 0;

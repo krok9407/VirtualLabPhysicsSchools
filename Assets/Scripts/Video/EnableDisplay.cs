@@ -1,10 +1,13 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+
 
 //переписать (чтобы подтягивал от нужной лабы, а не от привязанной)
 public class EnableDisplay : MonoBehaviour
 {
     [SerializeField] GameObject enter;
+    [SerializeField] GameObject taskBoard;
+    [SerializeField] GameObject taskPrefab;
     [SerializeField] float rangeDetected = 2.5f;
     private GameObject sittingCamera;
     private GameObject firstPersonalCharecter;
@@ -20,22 +23,48 @@ public class EnableDisplay : MonoBehaviour
 
 
     public void OpenLab(){
-        //gameObject.SetActive(false);
         enter.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
+    private InfoLab infoLab;
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.TryGetComponent<InfoLab>(out InfoLab infoLab))
+        if (collider.TryGetComponent<InfoLab>(out infoLab))
         {
-            enter.SetActive(true);
-            enter.GetComponentInChildren<Text>().text = infoLab.GetNumber();
+            EnableUI(true, infoLab);
         }
     }
+
+    private void EnableUI(bool enabled, InfoLab infoLab)
+    {
+        enter.SetActive(enabled);
+        enter.GetComponentInChildren<TextMeshProUGUI>().text = infoLab.GetNumber();
+        taskBoard.SetActive(enabled);
+        if (enabled)
+        {
+            short i = 1;
+            foreach (var task in infoLab.Lessons)
+            {
+                GameObject newTask = Instantiate(taskPrefab, taskBoard.transform);
+                newTask.GetComponent<Task>().number.text = i.ToString()+'.';
+                newTask.GetComponent<Task>().taskText.text = task;
+                i++;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < taskBoard.transform.childCount; i++)
+            {
+                Destroy(taskBoard.transform.GetChild(i).gameObject);
+            }
+        }
+    }
+
     private void OnTriggerStay(Collider collider)
     {
-        if (collider.TryGetComponent<InfoLab>(out InfoLab infoLab))
+        if (collider.TryGetComponent<InfoLab>(out infoLab))
         {
            
             if (Input.GetKeyDown(KeyCode.Return))
@@ -53,7 +82,7 @@ public class EnableDisplay : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        enter.SetActive(false);
+        EnableUI(false, infoLab);
     }
 
 }
