@@ -4,24 +4,37 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Answer
 {
-    public string title; 
-    public string answerFirst;
-    public string answerSecond;
+    [SerializeField] private string title;
+    public string Title => title;
+    [SerializeField] private string answerFirst;
+    public string AnswerFirst => answerFirst;
+    [SerializeField] private string answerSecond;
+    public string AnswerSecond => answerSecond;
+}
+[System.Serializable]
+public class Laboratory
+{
+    [SerializeField] private string lesson;
+    [SerializeField] private Answer[] answers;
+    public Answer[] Answers => answers;
+    public string Lesson => lesson;
 }
 
 
 public class InfoLab : MonoBehaviour
 {
-    [SerializeField] private int number = 1;
-    [SerializeField] private string[] lessons;
-    public string[] Lessons => lessons;
+    [SerializeField] private Laboratory[] laboratorys;
+    public Laboratory[] Laboratory => laboratorys;
+
+    [SerializeField] private short number = 1;
+
+    private short activeLab = 0;
+    public short ActiveLab => activeLab;
 
     private float time = 0f;
     private bool startLab;
-    [SerializeField] private Text labelText;
+    [SerializeField] private Text labelText; //зачем?
     private InteractiveElements _elements;
-    public Answer[] answers;
-    public Answer[] Answers => answers;
 
     
     private void Awake()

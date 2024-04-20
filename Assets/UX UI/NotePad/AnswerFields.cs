@@ -29,7 +29,7 @@ public class AnswerFields : MonoBehaviour
             }
             answer.name = $"вопрос {i}";
             var labels = answer.GetComponent<AnswerField>();
-            labels.SetAnswer(answers[i].title, answers[i].answerFirst, answers[i].answerSecond);
+            labels.SetAnswer(answers[i].Title, answers[i].AnswerFirst, answers[i].AnswerSecond);
             this.answers.Add(answer);
         }
         if (answers.Length%2==1)
