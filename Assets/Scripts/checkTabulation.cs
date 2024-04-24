@@ -4,10 +4,11 @@ using TMPro;
 
 public class checkTabulation : MonoBehaviour
 {
-    private TextMeshProUGUI _input;
+    private TMP_InputField _input;
     void Start()
     {
-        _input = GetComponent<TextMeshProUGUI>();
+        _input = GetComponent<TMP_InputField>();
+        print(_input);
     }
     public void Check(){
         if(_input.text.EndsWith('\t'))

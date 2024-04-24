@@ -49,7 +49,7 @@ public class EnableDisplay : MonoBehaviour
             {
                 GameObject newTask = Instantiate(taskPrefab, taskBoard.transform);
                 newTask.GetComponent<Task>().number.text = i.ToString()+'.';
-                newTask.GetComponent<Task>().taskText.text = task.Lesson;
+                newTask.GetComponent<Task>().PrintTask(task.Lesson);
                 i++;
             }
         }
@@ -77,6 +77,7 @@ public class EnableDisplay : MonoBehaviour
                 infoLab.StartLab();
                 collider.transform.GetChild(0).gameObject.SetActive(true);
                 firstPersonalCharecter.SetActive(false);
+                EnableUI(false, infoLab);
             }
         }
     }
