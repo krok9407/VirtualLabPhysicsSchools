@@ -8,7 +8,6 @@ public class checkTabulation : MonoBehaviour
     void Start()
     {
         _input = GetComponent<TMP_InputField>();
-        print(_input);
     }
     public void Check(){
         if(_input.text.EndsWith('\t'))

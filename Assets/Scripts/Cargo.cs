@@ -1,11 +1,12 @@
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 using System;
 
 public class Cargo : MonoBehaviour
 {
     [SerializeField] private float volume;
+    [SerializeField] private Camera cam;
+
     public List<float> mass = new List<float>();
     public List<float> force = new List<float>();
     [HideInInspector] public float currentMass;
@@ -22,7 +23,7 @@ public class Cargo : MonoBehaviour
     private DragElements _drag;
     private Dynamometer dynamometer;
     private Collider _collider;
-
+     
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -73,7 +74,7 @@ public class Cargo : MonoBehaviour
         bool checkGlass = false;
         if (_drag.isDrag)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits;
             hits = Physics.RaycastAll(ray, 100.0F);
             foreach (var hit in hits)

@@ -6,10 +6,10 @@ public class GetWeight : MonoBehaviour
     [SerializeField] private OnOffScales OnOffScales;
     private BoxCollider _boxCollider;
     float massObjects = 0f;
-    float lastMass = 0f;
+    public float lastMass = 0f;
     public TMPro.TextMeshPro WeightText;
     private string[] measurementSystem = {"g", "oz", "ct"};
-    private string charMeasurement;
+    private string charMeasurement = "g";
     public void SetMeansurementSystem(int index){
         charMeasurement = measurementSystem[index];
     }
@@ -29,6 +29,7 @@ public class GetWeight : MonoBehaviour
     }
     private void Start() {
         _boxCollider = GetComponent<BoxCollider>();
+        WeightText.text = "0,00g";
     }
 
     private float GetAllMass(){
@@ -45,29 +46,34 @@ public class GetWeight : MonoBehaviour
         }
          return newMass;
     }
-    public void RepaintWeight(){
+    public bool checkError(float mass)
+    {
+        if ((charMeasurement == "g" && mass < 200)
+                    || (charMeasurement == "oz" && mass < 7.1)
+                    || (charMeasurement == "ct" && mass < 1000))
+            return false;
+        else return true;
+    }
+    /*public void RepaintWeight(){
         WeightText.text= "";
         float mass = GetAllMass();
-        if(mass < 2000f){
-            WeightText.text += mass.ToString()+charMeasurement;
-        }else{
-            WeightText.text = "ERROR";
-        }
-    }
+        if (checkError(mass)) { WeightText.text = "ERROR";  }
+        else WeightText.text = mass.ToString() + charMeasurement;
+    }*/
     private IEnumerator SetNumber(float speed){
         float currentTime = 0f;
-        while(currentTime<=1f){
-            yield return new WaitForSeconds(speed/4f);
-            currentTime+=speed;
+        while (currentTime <= 1f) {
+            yield return new WaitForSeconds(speed / 4f);
+            currentTime += speed;
+
             float currentWeight = Mathf.Lerp(lastMass, massObjects, currentTime);
-            currentWeight = (float)System.Math.Round(currentWeight, 2);
-            if(currentWeight<2000){
-                WeightText.text = currentWeight.ToString()+charMeasurement;
-            }else{
-                WeightText.text = "ERROR";
-            }
+            if(currentWeight<99) currentWeight = (float)System.Math.Round(currentWeight, 4);
+            else currentWeight = (float)System.Math.Round(currentWeight, 2);
+
+            if (checkError(currentWeight)) { WeightText.text = "ERROR"; print("ошибка"); }
+            else WeightText.text = currentWeight.ToString() + charMeasurement;
         }
-        lastMass=massObjects;
+        lastMass = massObjects;
     yield return null;
     }
 }

@@ -17,6 +17,7 @@ public class SittingAnimation : MonoBehaviour
     [SerializeField] PlayingOrPaused videoPlayer;
     Transform targetDirection;
     public InteractiveElements interactiveElements;
+    public bool busy = false;
     
     public void StartSitting(WorkSpace workSpace, InfoLab infoLab)
     {
@@ -48,19 +49,20 @@ public class SittingAnimation : MonoBehaviour
                 isSitting = false;
             }
         }
-        
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            infoLab.CloseLab();
-            isStandUp = true;
-            interactiveElements.OffAll();
-            try
+        if (!busy) { 
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                videoPlayer.CloseLessons();
+                infoLab.CloseLab();
+                isStandUp = true;
+                interactiveElements.OffAll();
+                try
+                {
+                    videoPlayer.CloseLessons();
+                }
+                catch { }
             }
-            catch { }
         }
-        
+
         if (isStandUp)
         {
             transformFirstPersonCharacter.gameObject.SetActive(true);

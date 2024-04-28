@@ -11,11 +11,12 @@ public class ChangingUnits : MonoBehaviour
     public void ChangeUnits(){
         index++;
         if(index>2) index = 0;
+        getWeight.SetMeansurementSystem(index);
+        getWeight.lastMass = 0f;
         foreach (var cargo in Cargos)
         {
             cargo.SetMass(index);
         }
-        getWeight.SetMeansurementSystem(index);
-        getWeight.RepaintWeight();
+        //getWeight.RepaintWeight();
     }
 }

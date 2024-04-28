@@ -21,6 +21,10 @@ public class InteractiveElements : MonoBehaviour
         foreach (var mouse in _changeMouse)
             mouse.enabled = enabled;
     }
+    public void ResetLaboratory()
+    {
+        //вернуть все объеты на места и сбросить ответы
+    }
     
     public void OffAll()
     {

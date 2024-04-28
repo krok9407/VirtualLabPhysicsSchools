@@ -3762,7 +3762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a4580bc6d737c4796823cbf011bf53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 26
+  volume: 25
+  cam: {fileID: 1920483182}
   mass:
   - 196.67
   - 6.9375
@@ -5717,7 +5718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a4580bc6d737c4796823cbf011bf53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 26
+  volume: 25
+  cam: {fileID: 1920483182}
   mass:
   - 69.28
   - 2.444
@@ -41960,6 +41962,7 @@ MonoBehaviour:
   maxAngleY: 0
   videoPlayer: {fileID: 980537639}
   interactiveElements: {fileID: 0}
+  busy: 0
 --- !u!20 &1920483182 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8307755725580532024, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
@@ -43169,6 +43172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: 34
+  cam: {fileID: 1920483182}
   mass:
   - 94.98
   - 3.3505
@@ -45591,6 +45595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: 56
+  cam: {fileID: 1920483182}
   mass:
   - 65.99
   - 2.3275

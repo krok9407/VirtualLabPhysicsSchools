@@ -14,19 +14,26 @@ public class EnableNotepad : ClickOnObject
 
     [SerializeField] private Canvas NotepadCanvas;
     private AnswerFields answerField;
-    private NotePad notePad;
+
+    private SittingAnimation controller;
+
     private void Awake()
-    {
+    { 
         TopSide = transform.GetChild(0);
         _collider = GetComponent<BoxCollider>();
         infoLab = GetComponentInParent<InfoLab>();
         answerField = NotepadCanvas.GetComponentInChildren<AnswerFields>();
-        notePad = NotepadCanvas.GetComponentInChildren<NotePad>();
     }
+    private void Start()
+    {
+        controller = FindObjectOfType<SittingAnimation>().GetComponent<SittingAnimation>();
+    }
+
     override public void Enable(bool enable)
     {
         if (enable)
         {
+            controller.busy = true;
             _collider.enabled = false;
             Quaternion camRotation = cam.rotation;
             Quaternion targetRotation = new()
@@ -37,13 +44,16 @@ public class EnableNotepad : ClickOnObject
             animationNotepad = DOTween.Sequence();
             animationNotepad.Join(TopSide.DOLocalRotate(new Vector3(0, 0, -180), durationAnimation))
                 .Join(transform.DOMove(Camera.main.transform.position + (cam.transform.forward * offset), durationAnimation))
-                .Join(transform.DORotateQuaternion(targetRotation, durationAnimation / 2f)).
-                SetAutoKill(false).OnComplete(() => {
+                .Join(transform.DORotateQuaternion(targetRotation, durationAnimation / 2f))
+                .SetAutoKill(false)
+                .OnComplete(() => {
                     NotepadCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
                     this.enabled = false;
+
                 }).OnRewind(() => {
                     this.enabled = true;
                     answerField.ClearTable();
+                    controller.busy = false;
                 }) ;
         }
         else
