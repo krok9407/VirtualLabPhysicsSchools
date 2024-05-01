@@ -15,7 +15,7 @@ public class Cargo : MonoBehaviour
     private Vector3 _startPosition;
     private Quaternion _startRotation;
     private Transform _parent;
-    private bool checkJoin = false;
+    [SerializeField] private bool checkJoin = false;
 
     private enableCargoEffect _effect;
     private WaterVolume _water;
@@ -68,7 +68,7 @@ public class Cargo : MonoBehaviour
             _water.cargos.Remove(this);
         }
     }
-
+    private Outline effectDynamometer;
     void Update()
     {
         bool checkGlass = false;
@@ -90,22 +90,32 @@ public class Cargo : MonoBehaviour
                     _mesh = _water.gameObject.GetComponent<MeshRenderer>();
                     _mesh.enabled = false;
                     _effect = _water.GetComponentInChildren<enableCargoEffect>();
-                    _effect.EnableEffect(Int32.Parse(gameObject.name)-1, true);
+                    _effect.EnableEffect(Int32.Parse(gameObject.name) - 1, true);
                     break;
                 }
                 else if (hitObj.TryGetComponent<Dynamometer>(out dynamometer))
                 {
                     checkJoin = true;
-                    //запускаем эффект присоединения к динамометру
+                    //(Дописать) запускаем эффект присоединения к динамометру 
+                    effectDynamometer = dynamometer.GetComponent<Outline>();
+                    effectDynamometer.enabled = true;
                     break;
+                }
+                else
+                {
+                    if (!checkGlass && _effect != null)
+                    {
+                        _effect.EnableEffect(Int32.Parse(gameObject.name) - 1, false);
+                        _mesh.enabled = true;
+                    }
+                    if (effectDynamometer != null)
+                    {
+                        effectDynamometer.enabled = false;
+                    }
                 }
 
             }
-            if ((!checkGlass || hits.Length < 1) && _effect != null)
-            {
-                _effect.EnableEffect(Int32.Parse(gameObject.name)-1, false);
-                _mesh.enabled = true;
-            }
+            
         }     
     }
     private void OnMouseUp()
@@ -118,6 +128,7 @@ public class Cargo : MonoBehaviour
         {
             if (!dynamometer.isBusy)
             {
+                effectDynamometer.enabled = false;
                 _rigidbody.useGravity = false;
                 _collider.enabled = false;
                 _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
@@ -130,7 +141,7 @@ public class Cargo : MonoBehaviour
             {
                 _effect.EnableEffect(Int32.Parse(gameObject.name) - 1, false);
                 _rigidbody.constraints = RigidbodyConstraints.None;
-                Transform attachmentPoint = _water.gameObject.GetComponentInChildren<Attachment>().gameObject.transform;
+                Transform attachmentPoint = _water.gameObject.GetComponentInChildren<Attachment>().gameObject.transform; //ругается почему-то
                 gameObject.transform.SetParent(attachmentPoint.transform);
                 gameObject.transform.position = attachmentPoint.position;
                 gameObject.transform.rotation = attachmentPoint.rotation;

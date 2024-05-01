@@ -11,7 +11,7 @@ public class Dynamometer : MonoBehaviour
     private float value = 0f;
     private float position = 0f;
 
-    [HideInInspector] public bool isBusy = false;
+    public bool isBusy = false;
     private Cargo joiningCargo;
     private short indexForce = 0;
     [HideInInspector] public short IndexForce => indexForce;

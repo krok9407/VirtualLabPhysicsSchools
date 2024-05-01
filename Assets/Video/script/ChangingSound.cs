@@ -4,14 +4,12 @@ using UnityEngine.EventSystems;
 
 public class ChangingSound : MonoBehaviour, IPointerDownHandler
 {
-    private Scrollbar scrollbar;
-    private Image fillProgressBar;
+    [SerializeField] private Scrollbar scrollbar;
+    [SerializeField] private Image fillProgressBar;
     private float propScrollToSound;
     public UnityEngine.Video.VideoPlayer videoPlayer;
     void Start()
     {
-        fillProgressBar = GetComponent<Image>();
-        scrollbar = GetComponent<Scrollbar>();
         propScrollToSound = 1f/GetComponent<RectTransform>().sizeDelta.x;
     }
     private void OnEnable()

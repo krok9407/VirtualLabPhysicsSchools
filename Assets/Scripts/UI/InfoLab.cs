@@ -44,12 +44,12 @@ public class InfoLab : MonoBehaviour
     public void StartLab(){
         startLab = true;
         labelText.gameObject.SetActive(true);
-        _elements.OnAll();
+        _elements.EnabledAll(true);
     }
     public void CloseLab(){
         startLab = true;
         labelText.gameObject.SetActive(false);
-        _elements.OffAll();
+        _elements.EnabledAll(false);
     }
 
     public string GetNumber(){

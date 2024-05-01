@@ -54,7 +54,7 @@ public class SittingAnimation : MonoBehaviour
             {
                 infoLab.CloseLab();
                 isStandUp = true;
-                interactiveElements.OffAll();
+                interactiveElements.EnabledAll(false);
                 try
                 {
                     videoPlayer.CloseLessons();

@@ -20,12 +20,12 @@ public class EnableComputer : ClickOnObject
         foreach (var element  in interactiveElements) {
             if (enable)
             {
-                element.OffAll();
+                element.EnabledAll(false);
                 controller.busy = true;
             }
             else
             {
-                element.OnAll();
+                element.EnabledAll(true);
                 controller.busy = false;
             }
         }

@@ -38,12 +38,19 @@ public class WaterVolume : MonoBehaviour
         if (cargos.Count > 0) cargoInside = true;
         else cargoInside = false;
     }
-    private void OnMouseOver() {
-        if(Input.mouseScrollDelta.y>0f){
-            if(_fullness<0.643f)    _fullness+=0.001f;
-        }else if(Input.mouseScrollDelta.y<0f){
-            if(_fullness>0.47f)    _fullness-=0.001f;
-        }  
-        Recalculation();
+    private void OnMouseOver()
+    {
+        if (this.enabled)
+        {
+            if (Input.mouseScrollDelta.y > 0f)
+            {
+                if (_fullness < 0.643f) _fullness += 0.001f;
+            }
+            else if (Input.mouseScrollDelta.y < 0f)
+            {
+                if (_fullness > 0.47f) _fullness -= 0.001f;
+            }
+            Recalculation();
+        }
     }
 }

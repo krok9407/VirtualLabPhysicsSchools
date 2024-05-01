@@ -18,7 +18,11 @@ public class GetWeight : MonoBehaviour
         massObjects = GetAllMass();
         StartCoroutine(SetNumber(speedToDrawNumber));
     }
-     void OnCollisionStay(Collision other)
+    public void ResetMass()
+    {
+        WeightText.text = "0.00"+ charMeasurement;
+    }
+    void OnCollisionStay(Collision other)
     {
         massObjects = GetAllMass();
         if (lastMass != massObjects) StartCoroutine(SetNumber(speedToDrawNumber));
