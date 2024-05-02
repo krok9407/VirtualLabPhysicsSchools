@@ -16,13 +16,20 @@ public class Laboratory
 {
     [SerializeField] private string lesson;
     [SerializeField] private Answer[] answers;
+    [SerializeField][TextAreaAttribute] private string task;
     public Answer[] Answers => answers;
     public string Lesson => lesson;
+    public string Task => task;
 }
 
 
 public class InfoLab : MonoBehaviour
 {
+
+    [SerializeField][TextAreaAttribute] private string theory;
+
+    public string Theory => theory;
+
     [SerializeField] private Laboratory[] laboratorys;
     public Laboratory[] Laboratory => laboratorys;
 

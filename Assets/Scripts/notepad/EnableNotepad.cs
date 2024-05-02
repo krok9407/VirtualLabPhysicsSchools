@@ -14,6 +14,7 @@ public class EnableNotepad : ClickOnObject
 
     [SerializeField] private Canvas NotepadCanvas;
     private AnswerFields answerField;
+    private LeftPage leftPage;
 
     private SittingAnimation controller;
 
@@ -23,6 +24,7 @@ public class EnableNotepad : ClickOnObject
         _collider = GetComponent<BoxCollider>();
         infoLab = GetComponentInParent<InfoLab>();
         answerField = NotepadCanvas.GetComponentInChildren<AnswerFields>();
+        leftPage = NotepadCanvas.GetComponentInChildren<LeftPage>();
     }
     private void Start()
     {
@@ -40,7 +42,11 @@ public class EnableNotepad : ClickOnObject
             {
                 eulerAngles = new Vector3(90 - camRotation.eulerAngles.x, camRotation.eulerAngles.y - 180, camRotation.eulerAngles.z)
             };
+
+            leftPage.FillTask(infoLab.Laboratory[infoLab.ActiveLab].Task);
+            leftPage.FillTheory(infoLab.Theory);
             answerField.DrawTable(infoLab.Laboratory[infoLab.ActiveLab].Answers);
+            
             animationNotepad = DOTween.Sequence();
             animationNotepad.Join(TopSide.DOLocalRotate(new Vector3(0, 0, -180), durationAnimation))
                 .Join(transform.DOMove(Camera.main.transform.position + (cam.transform.forward * offset), durationAnimation))
