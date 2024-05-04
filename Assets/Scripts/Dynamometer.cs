@@ -14,9 +14,7 @@ public class Dynamometer : MonoBehaviour
     public bool isBusy = false;
     private Cargo joiningCargo;
     private short indexForce = 0;
-    [HideInInspector] public short IndexForce => indexForce;
-    [HideInInspector] public float Value => value;
-    [HideInInspector] public Cargo JoiningCargo => joiningCargo;
+
     private void Start()
     {
         position = minPosition;
@@ -36,10 +34,28 @@ public class Dynamometer : MonoBehaviour
     {
         return min + (input - inputMin) * (max - min) / (inputMax - inputMin);
     }
+    private void Update()
+    {
+        if (joiningCargo != null)
+        {
+            if (pointJoinng.childCount < 1)
+            {
+                UnhookCargo();
+            }
+        }
+    }
+    public void UnhookCargo()
+    {
+        joiningCargo.StartPosition();
+        ChangePosition(0);
+        joiningCargo = null;
+        isBusy = false;
+    }
+
     public void ChangePosition(float force = 0f)
     {
         value = Map(position, minPosition, maxPosition, 0f, maxValue);
-        value +=force;
+        value = force;
         position = Map(value, 0f, maxValue, minPosition, maxPosition);
         spring.DOLocalMoveY(position, 1f);
     }

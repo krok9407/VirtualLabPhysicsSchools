@@ -37,9 +37,9 @@ public class Cargo : MonoBehaviour
 
     public void StartPosition()
     {
+        transform.SetParent(_parent);
         transform.position = _startPosition;
         transform.rotation = _startRotation;
-        transform.SetParent(_parent);
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         _rigidbody.useGravity = true;
         _collider.enabled = true;

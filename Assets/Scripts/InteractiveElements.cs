@@ -9,7 +9,7 @@ public class InteractiveElements : MonoBehaviour
 
     private WaterVolume[] _waterVolumes;
     private ControllHeight _controllHeight;
-    private ChangeDynamometers _changeDynamometers;
+    private Dynamometers _changeDynamometers;
 
     void Awake()
     {
@@ -19,7 +19,7 @@ public class InteractiveElements : MonoBehaviour
         _outlines = GetComponentsInChildren<Outline>();
 
         _controllHeight = GetComponentInChildren<ControllHeight>();
-        _changeDynamometers = GetComponentInChildren<ChangeDynamometers>();
+        _changeDynamometers = GetComponentInChildren<Dynamometers>();
         _waterVolumes = GetComponentsInChildren<WaterVolume>();
 
         EnabledAll(false);

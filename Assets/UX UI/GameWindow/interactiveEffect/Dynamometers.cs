@@ -1,22 +1,23 @@
 using UnityEngine;
 
-public class ChangeDynamometers : MonoBehaviour
+public class Dynamometers : MonoBehaviour
 {
     [SerializeField] private GameObject effect;
-    [SerializeField] private GameObject[] dynamometers;
+    [SerializeField] private Dynamometer[] allDynamometers;
+    public Dynamometer[] AllDynamometer => allDynamometers;
     int index = 0;
     private void Start() { }
     public void NextDynamometer(int direction = 1)
     {
         if (direction == -1 && index > 0) index--;
-        else if (direction == -1 && index == 0) index = dynamometers.Length - 1;
-        else if (direction == 1 && index < (dynamometers.Length - 1)) index++;
-        else if (direction == 1 && index == (dynamometers.Length - 1)) index = 0;
-        foreach (GameObject obj in dynamometers)
+        else if (direction == -1 && index == 0) index = allDynamometers.Length - 1;
+        else if (direction == 1 && index < (allDynamometers.Length - 1)) index++;
+        else if (direction == 1 && index == (allDynamometers.Length - 1)) index = 0;
+        foreach (Dynamometer obj in allDynamometers)
         {
-            if (obj != null) { obj.SetActive(false); }
+            if (obj != null) { obj.gameObject.SetActive(false); }
         }
-        dynamometers[index].SetActive(true);
+        allDynamometers[index].gameObject.SetActive(true);
     }
     private void OnMouseEnter()
     {

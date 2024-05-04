@@ -16,8 +16,6 @@ public class EnableNotepad : ClickOnObject
     private AnswerFields answerField;
     private LeftPage leftPage;
 
-    private SittingAnimation controller;
-
     private void Awake()
     { 
         TopSide = transform.GetChild(0);
@@ -26,16 +24,13 @@ public class EnableNotepad : ClickOnObject
         answerField = NotepadCanvas.GetComponentInChildren<AnswerFields>();
         leftPage = NotepadCanvas.GetComponentInChildren<LeftPage>();
     }
-    private void Start()
-    {
-        controller = FindObjectOfType<SittingAnimation>().GetComponent<SittingAnimation>();
-    }
+    
 
     override public void Enable(bool enable)
     {
+        base.Enable(enable);
         if (enable)
         {
-            controller.busy = true;
             _collider.enabled = false;
             Quaternion camRotation = cam.rotation;
             Quaternion targetRotation = new()
@@ -59,7 +54,6 @@ public class EnableNotepad : ClickOnObject
                 }).OnRewind(() => {
                     this.enabled = true;
                     answerField.ClearTable();
-                    controller.busy = false;
                 }) ;
         }
         else
@@ -67,8 +61,6 @@ public class EnableNotepad : ClickOnObject
             NotepadCanvas.renderMode = RenderMode.ScreenSpaceCamera;
             _collider.enabled = true;
             animationNotepad.PlayBackwards();
-            FindObjectOfType<InteractiveElements>().EnableAllMouse(true);
         }
-
     }
 }

@@ -10,8 +10,8 @@ public class ZoomScales : ClickOnObject
     {
         _collider = GetComponent<BoxCollider>();
     }
-    //использовать обычный без перегрузки, настроить эвенет в инспекторе
     override public void Enable(bool enable) {
+        base.Enable(enable);
         if (enable)
         {
             CameraTop.SetActive(true);
@@ -25,7 +25,6 @@ public class ZoomScales : ClickOnObject
             mainCamera.SetActive(true);
             ButtonExit.SetActive(false);
             _collider.enabled = true;
-            FindObjectOfType<InteractiveElements>().EnableAllMouse(false);
         }
     }
 }

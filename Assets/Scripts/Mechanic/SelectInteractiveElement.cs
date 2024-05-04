@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Outline))]
 public class SelectInteractiveElement : MonoBehaviour
 {
-    [SerializeField] private Texture2D cursorTexture;
-    [SerializeField] private Outline outline;
+    [SerializeField] protected Texture2D cursorTexture;
+    [SerializeField] protected Outline outline;
     private void Start() { }
     void OnMouseEnter()
     {

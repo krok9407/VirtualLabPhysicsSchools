@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class RaycastController : MonoBehaviour
 {
-   
+    private Camera cam;
+    private void Start()
+    {
+        cam = GetComponent<Camera>();
+    }
     void Update()
     {
         if (Input.GetMouseButton(1))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 100))
@@ -18,26 +22,31 @@ public class RaycastController : MonoBehaviour
                 {
                     cargo.StartPosition();
                 }
-                else if (obj.TryGetComponent<Dynamometer>(out Dynamometer dynamometer))
+                else if (obj.TryGetComponent<Dynamometers>(out Dynamometers dynamometers))
                 {
-                    if (dynamometer.isBusy)
+                    foreach (Dynamometer dynamometer in dynamometers.AllDynamometer)
                     {
-                        dynamometer.JoiningCargo.StartPosition();
-                        dynamometer.isBusy = false;
-                        dynamometer.ChangePosition(-dynamometer.JoiningCargo.force[dynamometer.IndexForce]);
-                    }
-                }
-                else if(obj.TryGetComponent<WaterVolume>(out WaterVolume _water))
-                    {
-                    if (_water.CargoInside)
+                        if (dynamometer.isBusy && dynamometer.gameObject.activeSelf)
                         {
-                            foreach (var cargoInWater in _water.cargos) {
-                                cargoInWater.StartPosition();
-                            }
+                            dynamometer.UnhookCargo();
                         }
                     }
+                }
+                else if (obj.TryGetComponent<WaterVolume>(out WaterVolume _water))
+                {
+                    if (_water.CargoInside)
+                    {
+                        foreach (var cargoInWater in _water.cargos)
+                        {
+                            cargoInWater.StartPosition();
+                        }
+                    }
+                }
+                else if (obj.TryGetComponent<Cargos>(out Cargos cargos))
+                {
+                    cargos.ResetAll();
+                }
             }
-
         }
     }
 }

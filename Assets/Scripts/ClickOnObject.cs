@@ -1,6 +1,13 @@
 using UnityEngine;
 public class ClickOnObject : SelectInteractiveElement
 {
+    private SittingAnimation controller;
+
+    private void Start()
+    {
+        controller = FindObjectOfType<SittingAnimation>().GetComponent<SittingAnimation>();
+    }
+
     void OnMouseOver()
     {
         if (this.enabled)
@@ -9,12 +16,21 @@ public class ClickOnObject : SelectInteractiveElement
             {
                 Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                 Enable(true);
-                FindObjectOfType<InteractiveElements>().EnableAllMouse(false);
             }
         }
     }
     virtual public void Enable(bool enable)
     {
-        
+        var interactiveElements = FindObjectOfType<InteractiveElements>();
+        if (enable)
+        {
+            interactiveElements.EnabledAll(false);
+            controller.busy = true;
+        }
+        else
+        {
+            interactiveElements.EnabledAll(true);
+            controller.busy = false;
+        }
     }
 }
