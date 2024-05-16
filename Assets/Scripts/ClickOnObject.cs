@@ -21,16 +21,8 @@ public class ClickOnObject : SelectInteractiveElement
     }
     virtual public void Enable(bool enable)
     {
-        var interactiveElements = FindObjectOfType<InteractiveElements>();
-        if (enable)
-        {
-            interactiveElements.EnabledAll(false);
-            controller.busy = true;
-        }
-        else
-        {
-            interactiveElements.EnabledAll(true);
-            controller.busy = false;
-        }
+       InteractiveElements[] interactiveElements = FindObjectsOfType<InteractiveElements>();
+       foreach (InteractiveElements interactive in interactiveElements) interactive.EnabledAll(!enable);
+       controller.busy = enable;
     }
 }

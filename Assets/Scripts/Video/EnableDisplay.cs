@@ -45,11 +45,14 @@ public class EnableDisplay : MonoBehaviour
         if (enabled)
         {
             short i = 1;
-            foreach (var task in infoLab.Laboratory)
+            foreach (var laboratory in infoLab.Laboratory)
             {
-                GameObject newTask = Instantiate(taskPrefab, taskBoard.transform);
-                newTask.GetComponent<Task>().number.text = i.ToString()+'.';
-                newTask.GetComponent<Task>().PrintTask(task.Lesson);
+                GameObject listElement = Instantiate(taskPrefab, taskBoard.transform);
+                Lesson lesson = listElement.GetComponent<Lesson>();
+                lesson.number.text = i.ToString()+'.';
+                if (!laboratory.complited) lesson.taskText.fontStyle = FontStyles.Subscript;
+                else lesson.taskText.fontStyle = FontStyles.Normal;
+                lesson.PrintTask(laboratory.Lesson);
                 i++;
             }
         }

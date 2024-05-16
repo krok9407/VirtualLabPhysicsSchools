@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number: {fileID: 6919504386003051756}
   taskText: {fileID: 6857900150079471011}
+  speed: 2
 --- !u!1 &3048412843898403038
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_text: 1.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77b9c0dceb0f880439efec9a6ddc39ec, type: 2}
-  m_sharedMaterial: {fileID: 4809197141441268367, guid: 77b9c0dceb0f880439efec9a6ddc39ec, type: 2}
+  m_sharedMaterial: {fileID: -1867698702295691130, guid: 77b9c0dceb0f880439efec9a6ddc39ec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -285,7 +286,7 @@ MonoBehaviour:
     \u0442\u0435\u043B\u0430"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77b9c0dceb0f880439efec9a6ddc39ec, type: 2}
-  m_sharedMaterial: {fileID: 4809197141441268367, guid: 77b9c0dceb0f880439efec9a6ddc39ec, type: 2}
+  m_sharedMaterial: {fileID: -1867698702295691130, guid: 77b9c0dceb0f880439efec9a6ddc39ec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -315,7 +316,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 64
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

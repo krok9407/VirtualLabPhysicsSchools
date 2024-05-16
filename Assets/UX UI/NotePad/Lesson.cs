@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 
-public class Task : MonoBehaviour
+public class Lesson : MonoBehaviour
 {
     public TextMeshProUGUI number;
     public TextMeshProUGUI taskText;

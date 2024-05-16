@@ -29,6 +29,7 @@ public class EnableNotepad : ClickOnObject
     override public void Enable(bool enable)
     {
         base.Enable(enable);
+        this.enabled = false;
         if (enable)
         {
             _collider.enabled = false;

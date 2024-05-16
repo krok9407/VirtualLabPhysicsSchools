@@ -7,6 +7,9 @@ public class Answer
     [SerializeField] private string title;
     public string Title => title;
     [SerializeField] private string answerFirst;
+
+    public bool complited = false;
+
     public string AnswerFirst => answerFirst;
     [SerializeField] private string answerSecond;
     public string AnswerSecond => answerSecond;
@@ -17,9 +20,13 @@ public class Laboratory
     [SerializeField] private string lesson;
     [SerializeField] private Answer[] answers;
     [SerializeField][TextAreaAttribute] private string task;
+    
+    public bool complited = false;
+
     public Answer[] Answers => answers;
     public string Lesson => lesson;
     public string Task => task;
+    
 }
 
 
@@ -60,7 +67,7 @@ public class InfoLab : MonoBehaviour
     }
 
     public string GetNumber(){
-        return $"Лабораторный комплект№ {number}";
+        return $"Лабораторный комплект №{number}";
     }
 
     private void Update() {
