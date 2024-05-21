@@ -24,7 +24,6 @@ public class EnableNotepad : ClickOnObject
         answerField = NotepadCanvas.GetComponentInChildren<AnswerFields>();
         leftPage = NotepadCanvas.GetComponentInChildren<LeftPage>();
     }
-    
 
     override public void Enable(bool enable)
     {
@@ -51,7 +50,6 @@ public class EnableNotepad : ClickOnObject
                 .OnComplete(() => {
                     NotepadCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
                     this.enabled = false;
-
                 }).OnRewind(() => {
                     this.enabled = true;
                     answerField.ClearTable();

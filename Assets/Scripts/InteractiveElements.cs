@@ -32,7 +32,7 @@ public class InteractiveElements : MonoBehaviour
     {
         //вернуть все объеты на места и сбросить ответы
     }
-    
+
     public void EnabledAll(bool enable)
     {
         EnableAllMouse(enable);

@@ -1,60 +1,61 @@
 using UnityEngine;
-
+using DG.Tweening;
 public class SittingAnimation : MonoBehaviour
 {
     InfoLab infoLab;
-    bool isSitting = false;
-    bool isStandUp = false;
-    public Transform transformCameraSitting;
     [SerializeField] private Transform transformFirstPersonCharacter;
-    [SerializeField] private UnityStandardAssets.Characters.FirstPerson.FirstPersonController firstPersonControllerScript;
-    [SerializeField] private GameObject firstPersonController;
-    float speed  = 5f;
-    [SerializeField] float minAngleX;
-    [SerializeField] float minAngleY;
-    [SerializeField] float maxAngleX;
-    [SerializeField] float maxAngleY;
+    [SerializeField] private GameObject controller;
     [SerializeField] PlayingOrPaused videoPlayer;
-    Transform targetDirection;
-    public InteractiveElements interactiveElements;
+    [HideInInspector] public InteractiveElements interactiveElements;
     public bool busy = false;
-    
-    public void StartSitting(WorkSpace workSpace, InfoLab infoLab)
+    Sequence animation;
+    [SerializeField] private EnableDisplay enableDisplay;
+    [SerializeField] private UnityStandardAssets.Characters.FirstPerson.FirstPersonController firstPersonControllerScript;
+
+    public void Sitting(WorkSpace workSpace, InfoLab infoLab)
     {
+        animation = DOTween.Sequence();
         this.infoLab = infoLab;
-        isSitting = true;
-        transformCameraSitting = workSpace.chair;
-        targetDirection = workSpace.targetVision;
+        Vector3 sittingPosition = new Vector3(workSpace.chair.position.x,
+            workSpace.chair.position.y + 1f,
+            workSpace.chair.position.z);
+        Animation(true, sittingPosition, workSpace.targetVision.position);
+    }
+    
+    public void Animation(bool forward, Vector3 position, Vector3 towards)
+    {
+        if (forward)
+        {
+            animation.Join(transform.DOMove(position, 2f)).
+            Append(transform.DOLookAt(towards, 2f))
+            .SetAutoKill(false)
+            .OnComplete(() =>
+            {
+                infoLab.StartLab();
+            })
+            .OnRewind(() => 
+            {
+                transformFirstPersonCharacter.gameObject.SetActive(true);
+                enableDisplay.enabled = true;
+                firstPersonControllerScript.enabled = true;
+                gameObject.SetActive(false);
+            });
+        }
+        else
+        {
+            animation.Rewind();
+        }
     }
 
     void Update()
     {
-        //заменить на дотвин
-        if (isSitting)
+        if (!busy)
         {
-            Vector3 pos = transformCameraSitting.position;
-            Vector3 targetPos = new Vector3 (pos.x - 0.1f, pos.y + 1.05f, pos.z);
-            
-            Vector3 direction = targetDirection.position - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed * Time.deltaTime);
-            transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
-            if (transform.position == targetPos && transform.rotation == rotation){
-                minAngleX = transform.rotation.eulerAngles.x - 30;
-                if(minAngleX<=0) minAngleX=10f; 
-                maxAngleX = transform.rotation.eulerAngles.x + 30;
-                if(maxAngleX>=360) maxAngleX-=360f;
-                minAngleY = transform.rotation.eulerAngles.y - 35;
-                maxAngleY = transform.rotation.eulerAngles.y + 35;
-                isSitting = false;
-            }
-        }
-        if (!busy) { 
             if (Input.GetKeyDown(KeyCode.E))
             {
                 infoLab.CloseLab();
-                isStandUp = true;
                 interactiveElements.EnabledAll(false);
+                Animation(false, transformFirstPersonCharacter.position, transformFirstPersonCharacter.forward);
                 try
                 {
                     videoPlayer.CloseLessons();
@@ -62,19 +63,5 @@ public class SittingAnimation : MonoBehaviour
                 catch { }
             }
         }
-
-        if (isStandUp)
-        {
-            transformFirstPersonCharacter.gameObject.SetActive(true);
-            Vector3 position = transformFirstPersonCharacter.position;
-            transform.position = Vector3.Lerp(transform.position, position, speed * Time.deltaTime);
-            Quaternion rotation = transformFirstPersonCharacter.rotation;
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed * Time.deltaTime);
-                isStandUp = false;
-                firstPersonControllerScript.enabled = true;
-                firstPersonController.SetActive(true);
-                this.gameObject.SetActive(false);
-        }
     }
-
 }

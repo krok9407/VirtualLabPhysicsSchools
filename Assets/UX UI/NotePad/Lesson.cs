@@ -10,27 +10,20 @@ public class Lesson : MonoBehaviour
 
     public void PrintTask(string task)
     {
+        gameObject.name = task;
         if (task.Length > 0)
         {
-            taskText.text = "";
             StartCoroutine(PrintText(task));
         }
     }
 
-    private IEnumerator PrintText(string text, int index=0)
+    IEnumerator PrintText(string text)
     {
-        if (taskText.text == text)
+        foreach (var sym in text)
         {
-            yield return null;
-        }
-        else {
-            taskText.text += text[index];
-            yield return new WaitForSeconds(1f/ (text.Length*speed));
-            if (index < text.Length)
-            {
-                index++;
-                StartCoroutine(PrintText(text,index));
-            }
+            taskText.text += sym;
+            yield return new WaitForSeconds(1f / (text.Length * speed));
         }
     }
+
 }

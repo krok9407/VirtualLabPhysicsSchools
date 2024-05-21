@@ -5,9 +5,7 @@ using TMPro;
 //переписать (чтобы подтягивал от нужной лабы, а не от привязанной)
 public class EnableDisplay : MonoBehaviour
 {
-    [SerializeField] GameObject enter;
-    [SerializeField] GameObject taskBoard;
-    [SerializeField] GameObject taskPrefab;
+
     [SerializeField] float rangeDetected = 2.5f;
     private GameObject sittingCamera;
     private GameObject firstPersonalCharecter;
@@ -21,72 +19,37 @@ public class EnableDisplay : MonoBehaviour
         firstPersonController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
     }
 
-
-    public void OpenLab(){
-        enter.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
     private InfoLab infoLab;
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.TryGetComponent<InfoLab>(out infoLab))
         {
-            EnableUI(true, infoLab);
-        }
-    }
-
-    private void EnableUI(bool enabled, InfoLab infoLab)
-    {
-        enter.SetActive(enabled);
-        enter.GetComponentInChildren<TextMeshProUGUI>().text = infoLab.GetNumber();
-        taskBoard.SetActive(enabled);
-        if (enabled)
-        {
-            short i = 1;
-            foreach (var laboratory in infoLab.Laboratory)
-            {
-                GameObject listElement = Instantiate(taskPrefab, taskBoard.transform);
-                Lesson lesson = listElement.GetComponent<Lesson>();
-                lesson.number.text = i.ToString()+'.';
-                if (!laboratory.complited) lesson.taskText.fontStyle = FontStyles.Subscript;
-                else lesson.taskText.fontStyle = FontStyles.Normal;
-                lesson.PrintTask(laboratory.Lesson);
-                i++;
-            }
-        }
-        else
-        {
-            for (int i = 0; i < taskBoard.transform.childCount; i++)
-            {
-                Destroy(taskBoard.transform.GetChild(i).gameObject);
-            }
+            infoLab.PrintAllInfo(true);
         }
     }
 
     private void OnTriggerStay(Collider collider)
     {
-        if (collider.TryGetComponent<InfoLab>(out infoLab))
+        if (this.enabled)
         {
-           
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (collider.TryGetComponent<InfoLab>(out infoLab))
             {
-                sittingCamera.SetActive(true);
-                sittingAnimation.StartSitting(collider.GetComponent<WorkSpace>(), infoLab);
-                sittingAnimation.interactiveElements = collider.GetComponent<InteractiveElements>();
-                firstPersonController.enabled = false;
-                enter.SetActive(false);
-                infoLab.StartLab();
-                collider.transform.GetChild(0).gameObject.SetActive(true);
-                firstPersonalCharecter.SetActive(false);
-                EnableUI(false, infoLab);
+                if (Input.GetKeyUp(KeyCode.Return))
+                {
+                    sittingCamera.SetActive(true);
+                    sittingAnimation.Sitting(collider.GetComponent<WorkSpace>(), infoLab);
+                    sittingAnimation.interactiveElements = collider.GetComponent<InteractiveElements>();
+                    firstPersonController.enabled = false;
+                    firstPersonalCharecter.SetActive(false);
+                    infoLab.PrintAllInfo(false);
+                    this.enabled = false;
+                }
             }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        EnableUI(false, infoLab);
+        infoLab.PrintAllInfo(false);
     }
 
 }
